@@ -1,0 +1,56 @@
+<!-- Modal -->
+<mat-dialog-content>
+    <form [formGroup]="productForm" style="padding: 10px;">
+        <h1 class="formHeader">ORDER #{{order}}</h1>
+        <div class="list-group">
+            <div class="list-group-item">
+                <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text"><i class="bi bi-upc"></i></div>
+                    </div>
+                    <input type="text" class="form-control" id="sku" formControlName="sku" placeholder="Sku">
+                </div>
+                <span style="color: red;" *ngIf="(sku && sku.invalid && sku.touched)"> Sku is required
+                </span>
+            </div>
+            <div class="list-group-item">
+                <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text"><i class="bi bi-bag-fill"></i></div>
+                    </div>
+                    <input type="text" class="form-control" id="name" formControlName="name" placeholder="Product name">
+                </div>
+                <span style="color: red;" *ngIf="name && name.invalid && name.touched"> Name is required
+                </span>
+            </div>
+            <div class="list-group-item">
+                <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text"><i class="bi bi-tags-fill"></i></div>
+                    </div>
+                    <input type="number" class="form-control" id="quantity" formControlName="quantity"
+                        placeholder="quantity">
+                </div>
+                <span style="color: red;" *ngIf="quantity && quantity.invalid && quantity.touched"> Quantity
+                    is
+                    required </span>
+            </div>
+            <div class="list-group-item">
+                <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text"><i class="bi bi-currency-dollar"></i></div>
+                    </div>
+                    <input type="number" class="form-control" id="price" formControlName="price" placeholder="price">
+                </div>
+                <span style="color: red;" *ngIf="price && price.invalid && price.touched"> Price is required
+                </span>
+            </div>
+        </div>
+    </form>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button mat-button [disabled]="productForm.invalid" type="button" class="btn btn-outline-primary" (click)="addItemToOrder()">Add to
+        order</button>
+    <button mat-button mat-dialog-close type="button" class="btn btn-outline-danger">Close</button>
+</mat-dialog-actions>

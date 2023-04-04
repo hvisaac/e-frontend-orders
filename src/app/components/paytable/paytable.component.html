@@ -1,0 +1,82 @@
+<div *ngIf="chargedData">
+    <div class="input-group mb-2" style="padding: 15px;">
+        <div class="input-group-prepend">
+            <div class="input-group-text"><i class="bi bi-search"></i></div>
+        </div>
+        <input class="form-control" [(ngModel)]="searchValue" searchValue placeholder="Search" (keyup)="filter()">
+    </div>
+
+    <div class="list-group" id="list">
+        <div class="accordion list-group-item" *ngFor="let order of orders; index as index" id="accordion">
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        [attr.data-bs-target]="'#collapseOne'+index" aria-expanded="false" aria-controls="collapseOne">
+                        ORDER #{{order.number}}
+                    </button>
+                </h2>
+                <div id="collapseOne{{index}}" class="accordion-collapse collapse" data-bs-parent="#accordion">
+                    <div class="accordion-body">
+                        <table [id]="'table'+index" datatable [dtOptions]="dtOptions[index]" style="width: 100%;">
+                        </table>
+                        <div class="buttons">
+                            <button type="button" class="btn btn-outline-success"><i class="bi bi-cash"
+                                    data-bs-toggle="modal" data-bs-target="#content"
+                                    (click)="openLoader()"></i></button>
+                            <button type="button" class="btn btn-outline-primary"><i class="bi bi-bag-plus"
+                                    (click)="openProductFormModal(order.number, index)"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="!chargedData">
+    <div class="input-group mb-2" style="padding: 15px;">
+        <div class="input-group-prepend">
+            <div class="input-group-text"><i class="bi bi-search"></i></div>
+        </div>
+        <input class="form-control" searchValue placeholder="Search">
+    </div>
+
+    <div class="list-group" id="list">
+        <div class="accordion list-group-item" id="accordionExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                        <ngx-skeleton-loader [theme]="{width: '250px'}"></ngx-skeleton-loader>
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <ngx-skeleton-loader [theme]="{width: '250px'}"></ngx-skeleton-loader>
+                        <ngx-skeleton-loader [theme]="{width: '100%'}"></ngx-skeleton-loader>
+                        <ngx-skeleton-loader [theme]="{width: '100%'}"></ngx-skeleton-loader>
+                        <ngx-skeleton-loader [theme]="{width: '100%'}"></ngx-skeleton-loader>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="accordion list-group-item" id="accordionExampleTwo">
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        <ngx-skeleton-loader [theme]="{width: '250px'}"></ngx-skeleton-loader>
+                    </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExampleTwo">
+                    <div class="accordion-body">
+                        <ngx-skeleton-loader [theme]="{width: '250px'}"></ngx-skeleton-loader>
+                        <ngx-skeleton-loader [theme]="{width: '100%'}"></ngx-skeleton-loader>
+                        <ngx-skeleton-loader [theme]="{width: '100%'}"></ngx-skeleton-loader>
+                        <ngx-skeleton-loader [theme]="{width: '100%'}"></ngx-skeleton-loader>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
